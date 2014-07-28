@@ -39,5 +39,9 @@ describe DigiString::Char do
     it "returns a map for a sign" do
       expect(DigiString::Char.build_char_map('?')).to eq @QUESTION
     end
+
+    it "raises an error for unknown charcters" do
+      expect{ DigiString::Char.build_char_map('#')}.to raise_error(DigiString::Char::NotImplementError)
+    end
   end
 end
