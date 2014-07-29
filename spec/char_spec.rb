@@ -25,6 +25,18 @@ describe DigiString::Char do
                  [false, false, true, false, false],
                  [false, false, false, false, false],
                  [false, false, true, false, false]]
+
+    @A = [
+      "  \e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m  ",
+      "\e[41m \e[0m\e[41m \e[0m      \e[41m \e[0m\e[41m \e[0m",
+      "\e[41m \e[0m\e[41m \e[0m      \e[41m \e[0m\e[41m \e[0m",
+      "\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m",
+      "\e[41m \e[0m\e[41m \e[0m      \e[41m \e[0m\e[41m \e[0m",
+      "\e[41m \e[0m\e[41m \e[0m      \e[41m \e[0m\e[41m \e[0m",
+      "\e[41m \e[0m\e[41m \e[0m      \e[41m \e[0m\e[41m \e[0m"
+      ]
+
+    @A2 = ["\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m", "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m", "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m", "\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m", "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m", "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m", "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m"]
   end
 
   describe ".build_char_map" do
@@ -46,9 +58,14 @@ describe DigiString::Char do
   end
 
   describe ".[]" do
-    it "returns a digital charcter" do
-      pending
+    it "returns a digital charcter in red" do
       expect(DigiString::Char[:A]).to eq @A
+    end
+
+    context "with options" do
+      it "returns green 'A' with yellow background" do
+        expect(DigiString::Char[:A, fg:'bg_green', bg:'bg_yellow']).to eq @A2
+      end
     end
   end
 end

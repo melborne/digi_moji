@@ -1,5 +1,7 @@
 module DigiString
   class Char
+    CHAR_WIDTH  = 5
+    CHAR_HEIGHT = 7
     A = %w(f t t t f
            t f f f t
            t f f f t
@@ -595,6 +597,14 @@ module DigiString
               .each_slice(char_map.size/7).to_a
     rescue => e
       raise NotImplementError, e
+    end
+
+    def self.[](char, fg: :bg_red, bg: nil, cell:" ", width:2)
+      cells = cell * width * CHAR_WIDTH
+      build_char_map(char).map do |row|
+        pattern = row.map { |col| [col ? fg : bg] * width }.flatten
+        cells.colco(*pattern, regexp:/./)
+      end
     end
   end
 end
