@@ -45,6 +45,16 @@ describe DigiString::Char do
       "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m",
       "\e[42m \e[0m\e[42m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[43m \e[0m\e[42m \e[0m\e[42m \e[0m"
       ]
+
+    @A3 = [
+      "AA\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0mAA",
+      "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m",
+      "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m",
+      "\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m\e[31mA\e[0m",
+      "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m",
+      "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m",
+      "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m"
+      ]
   end
 
   describe ".build_char_map" do
@@ -73,6 +83,10 @@ describe DigiString::Char do
     context "with options" do
       it "returns green 'A' with yellow background" do
         expect(DigiString::Char[:A, fg:'bg_green', bg:'bg_yellow']).to eq @A2
+      end
+
+      it "returns red 'A' constructed A cells" do
+        expect(DigiString::Char[:A, fg:'red', cell:'A']).to eq @A3
       end
     end
   end
