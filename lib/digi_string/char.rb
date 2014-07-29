@@ -599,7 +599,7 @@ module DigiString
       raise NotImplementError, e
     end
 
-    def self.[](char, fg: :bg_red, bg: nil, cell:" ", width:2)
+    def self.[](char, fg: :bg_white, bg: nil, cell:" ", width:2)
       cells = cell * width * CHAR_WIDTH
       build_char_map(char).map do |row|
         pattern = row.map { |col| [col ? fg : bg] * width }.flatten
