@@ -586,17 +586,17 @@ module DigiString
     EQUAL = %w()
     PERCENT = %w()
 
-    MAP = '0123456789 !?_-().,:;$+-*/=%'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT)).to_h
+    ALPHABETS = [*'A'..'Z', *'a'..'z'].zip([*'A'..'Z', *'LA'..'LZ']).to_h
+
+    MISC = '0123456789 !?_-().,:;$+-*/=%'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT)).to_h
 
     class NotImplementError < StandardError; end
 
     def self.build_char_map(char)
-      char = MAP[char.to_s] || char
+      char = ALPHABETS[char.to_s] || MISC[char.to_s] || raise(NotImplementError)
       char_map = const_get(char)
       char_map.map { |cell| cell == 't' }
               .each_slice(char_map.size/7).to_a
-    rescue => e
-      raise NotImplementError, e
     end
 
     def self.[](char, fg: :bg_white, bg: nil, cell:" ", width:2)
