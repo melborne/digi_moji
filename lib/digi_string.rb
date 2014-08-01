@@ -1,5 +1,6 @@
 require "digi_string/version"
 require "digi_string/char"
+require "digi_string/cli"
 
 require "colcolor"
 

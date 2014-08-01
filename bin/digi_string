@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'digi_string'
+
+DigiString::CLI.start(ARGV)
