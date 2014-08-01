@@ -612,15 +612,117 @@ module DigiMoji
                     f f f f f
                     f f f f f)
 
-    DOLLAR = %w()
-    EURO = %w()
-    SLASH = %w()
-    PLUS = %w()
-    MINUS = %w()
-    TIMES = %w()
-    DIVIDE = %w()
-    EQUAL = %w()
-    PERCENT = %w()
+    DOLLAR = %w(f t t t f
+                t f t f t
+                t f t f f
+                f t t t f
+                f f t f t
+                t f t f t
+                f t t t f)
+
+    EURO = %w(f f t t f
+              f t f f t
+              f t f f f
+              t t t t f
+              f t f f f
+              f t f f t
+              f f t t f)
+
+    SLASH = %w(f f f f f
+               f f f f t
+               f f f t f
+               f f t f f
+               f t f f f
+               t f f f f
+               f f f f f)
+
+    PLUS = %w(f f f f f
+              f f t f f
+              f f t f f
+              t t t t t
+              f f t f f
+              f f t f f
+              f f f f f)
+
+    MINUS = %w(f f f f f
+               f f f f f
+               f f f f f
+               t t t t t
+               f f f f f
+               f f f f f
+               f f f f f)
+
+    TIMES = %w(f f f f f
+               t f f f t
+               f t f t f
+               f f t f f
+               f t f t f
+               t f f f t
+               f f f f f)
+
+    DIVIDE = %w(f f f f f
+                f f t f f
+                f f f f f
+                t t t t t
+                f f f f f
+                f f t f f
+                f f f f f)
+
+    EQUAL = %w(f f f f f
+               f f f f f
+               t t t t t
+               f f f f f
+               t t t t t
+               f f f f f
+               f f f f f)
+
+    PERCENT = %w(f f f f f
+                 t f f f t
+                 f f f t f
+                 f f t f f
+                 f t f f f
+                 t f f f t
+                 f f f f f)
+
+    SHAPE = %w(f f f f f
+               f t f t f
+               t t t t t
+               f t f t f
+               t t t t t
+               f t f t f
+               f f f f f)
+
+    AND = %w(f t t f f
+             t f f t f
+             t f t f f
+             f t f f f
+             t f t f t
+             t f f t f
+             f t t f t)
+
+    GREATER = %w(f f f f f
+                 f t f f f
+                 f f t f f
+                 f f f t f
+                 f f t f f
+                 f t f f f
+                 f f f f f)
+
+    LESS = %w(f f f f f
+              f f f t f
+              f f t f f
+              f t f f f
+              f f t f f
+              f f f t f
+              f f f f f)
+
+    AT = %w(f t t t f
+            t f f f t
+            t f t t t
+            t f t f t
+            t f t t t
+            t f f f f
+            f t t t t)
 
     FILL = %w(t t t t t
               t t t t t
@@ -630,9 +732,10 @@ module DigiMoji
               t t t t t
               t t t t t)
 
+
     ALPHABETS = [*'A'..'Z', *'a'..'z'].zip([*'A'..'Z', *'LA'..'LZ']).to_h
 
-    MISC = '0123456789 !?_-().,:;$+-*/=%\''.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT APOSTROPHE)).to_h
+    MISC = '0123456789 !?_-().,:;$+-*/=%\'#&><@'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT APOSTROPHE SHAPE AND GREATER LESS AT)).to_h
 
     class NotImplementError < StandardError; end
 
