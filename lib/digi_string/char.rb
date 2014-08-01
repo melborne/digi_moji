@@ -574,7 +574,14 @@ module DigiString
     BRACKET_RIGHT = %w()
     PERIOD = %w()
     COMMA = %w()
-    COLON = %w()
+    COLON = %w(f f f f f
+               f t t f f
+               f t t f f
+               f f f f f
+               f t t f f
+               f t t f f
+               f f f f f)
+
     SEMI_COLON = %w()
     DOLLAR = %w()
     EURO = %w()
