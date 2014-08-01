@@ -32,23 +32,25 @@ module DigiString
     desc "timer SEC", "Print count down timer"
     option :message, aliases:'-m', desc:"Message on time's up", default:"TIME'S UP!"
     option :message_color, aliases:'-k', desc:"Message color", default:'bg_red'
+    option :unit, aliases:'-u', desc:"Argument unit", default:'sec'
     def timer(sec)
       opts = down_symbolize_key(options)
       message, message_color = opts.delete(:message), opts.delete(:message_color)
-      t = Time.new('00:00:00') + sec.to_i
+      unit = opts.delete(:unit)
+      t = Time.new('00:00:00') + time_in_sec(sec, unit)
       trap(:INT) { exit 0 }
       loop do
         time = time_format(t)
         str = String.new(time, opts)
         clear_screen
-        print str
+        puts str
         sleep 1.0
         break if [t.hour, t.min, t.sec].all?(&:zero?)
         t -= 1
       end
       clear_screen
       puts String.new(message, fg:message_color)
-      sleep 1.0
+      sleep 2.0
     ensure
       reset_screen
     end
@@ -57,6 +59,15 @@ module DigiString
       def down_symbolize_key(opts)
         opts.inject({}) do |h, (k, v)|
           h[k.to_s.downcase.intern] = v; h
+        end
+      end
+
+      def time_in_sec(time, unit)
+        case unit
+        when 'sec' then time.to_i
+        when 'min' then time.to_i * 60
+        when 'hour' then time.to_i * 60 * 60
+        else time.to_i
         end
       end
 
