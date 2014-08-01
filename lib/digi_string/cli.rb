@@ -2,11 +2,12 @@ require "thor"
 
 module DigiString
   class CLI < Thor
+    class_option :fg, aliases:'-f', desc:'Foreground color', default:'bg_white'
+    class_option :bg, aliases:'-b', desc:'Background color'
+    class_option :cell, aliases:'-c', desc:'Cell character'
+    class_option :width, aliases:'-w', desc:'Character width', default:2, type: :numeric
+
     desc "new WORD", "Print a digital word"
-    option :fg, aliases:'-f', desc:'Foreground color', default:'bg_white'
-    option :bg, aliases:'-b', desc:'Background color'
-    option :cell, aliases:'-c', desc:'Cell character'
-    option :width, aliases:'-w', desc:'Character width', default:2, type: :numeric
     def new(word)
       opts = down_symbolize_key(options)
       str = String.new(word, opts)
@@ -14,26 +15,42 @@ module DigiString
     end
 
     desc "time", "Print current time"
-    option :fg, aliases:'-f', desc:'Foreground color', default:'bg_white'
-    option :bg, aliases:'-b', desc:'Background color'
-    option :cell, aliases:'-c', desc:'Cell character'
-    option :width, aliases:'-w', desc:'Character width', default:2, type: :numeric
     def time
       opts = down_symbolize_key(options)
-      screen_size = IO.console.winsize.map { |n| n / 2 }
-      trap(:INT) do
-        print "\e[?25h"
-        print "\e[0;0H"
-        exit(0)
-      end
+      trap(:INT) { exit 0 }
       loop do
-        time = Time.at(Time.now.to_i)
-                   .tap { |t| break "%02d:%02d:%02d" % [t.hour, t.min, t.sec] }
+        time = time_format(Time.at(Time.now.to_i))
+        str = String.new(time, opts)
+        clear_screen
+        puts str
+        sleep 1.0
+      end
+    ensure
+      reset_screen
+    end
+
+    desc "timer SEC", "Print count down timer"
+    option :message, aliases:'-m', desc:"Message on time's up", default:"TIME'S UP!"
+    option :message_color, aliases:'-k', desc:"Message color", default:'bg_red'
+    def timer(sec)
+      opts = down_symbolize_key(options)
+      message, message_color = opts.delete(:message), opts.delete(:message_color)
+      t = Time.new('00:00:00') + sec.to_i
+      trap(:INT) { exit 0 }
+      loop do
+        time = time_format(t)
         str = String.new(time, opts)
         clear_screen
         print str
         sleep 1.0
+        break if [t.hour, t.min, t.sec].all?(&:zero?)
+        t -= 1
       end
+      clear_screen
+      puts String.new(message, fg:message_color)
+      sleep 1.0
+    ensure
+      reset_screen
     end
 
     no_tasks do
@@ -44,9 +61,17 @@ module DigiString
       end
 
       def clear_screen
-        print "\e[?25l"
-        print "\e[2J"
+        print "\e[?25l" # hide cursor
+        print "\e[2J"   # clear screen
         print "\e[2;0H"
+      end
+
+      def reset_screen
+        print "\e[?25h" # show cursor
+      end
+
+      def time_format(t)
+        "%02d:%02d:%02d" % [t.hour, t.min, t.sec]
       end
     end
   end
