@@ -8,6 +8,7 @@ module DigiString
     attr_accessor :string
     def initialize(str, space:1, **opts)
       @space = space
+      @opts = opts
       @bg = opts[:bg]
       # @string holds a sequence of Char objects.
       @string = str2chars(str, opts)
@@ -20,6 +21,7 @@ module DigiString
     end
 
     def +(other, **opts)
+      opts = @opts.merge(opts)
       other =
         case other
         when ::String, ::Symbol
@@ -31,6 +33,7 @@ module DigiString
         end
       self.dup.tap { |s| s.string += other }
     end
+    alias :join :+
 
     def <<(other, **opts)
       @string = (self + other).string
