@@ -5,11 +5,23 @@ require "colcolor"
 
 module DigiString
   class String
-    attr_reader :map
+    attr_reader :string
     def initialize(str, space:1, **opts)
-      head, *rest = str.to_s.each_char.map { |chr| Char[chr.intern, opts] }
-      joint = (" " * space).colco(opts[:bg], regexp:/./)
-      @map = head.zip(*rest).map { |e| e.join(joint) }
+      @space = space
+      @bg = opts[:bg]
+      # @string holds a sequence of Char objects.
+      @string = str2chars(str, opts)
+    end
+
+    def to_s
+      head, *rest = @string
+      joint = (" " * @space).colco(@bg, regexp:/./)
+      head.zip(*rest).map { |e| e.join(joint) }.join("\n")
+    end
+
+    private
+    def str2chars(str, opts)
+      str.to_s.each_char.map { |chr| Char[chr.intern, opts] }
     end
   end
 end
