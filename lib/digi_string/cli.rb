@@ -5,6 +5,8 @@ module DigiString
     desc "new WORD", "Print a digital word"
     option :fg, aliases:'-f', desc:'Foreground color'
     option :bg, aliases:'-b', desc:'Background color'
+    option :cell, aliases:'-c', desc:'Cell character'
+    option :width, aliases:'-w', desc:'Character width', default: 2
     def new(word)
       opts = down_symbolize_key(options)
       str = String.new(word, opts)

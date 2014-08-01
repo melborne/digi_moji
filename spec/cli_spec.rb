@@ -6,6 +6,8 @@ describe DigiString::CLI do
     @str_A = "  \e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m  \n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n"
 
     @str_colored_A = "\e[42m \e[0m\e[42m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[42m \e[0m\e[42m \e[0m\n\e[41m \e[0m\e[41m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[41m \e[0m\e[41m \e[0m\n\e[41m \e[0m\e[41m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[41m \e[0m\e[41m \e[0m\n\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\e[41m \e[0m\n\e[41m \e[0m\e[41m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[41m \e[0m\e[41m \e[0m\n\e[41m \e[0m\e[41m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[41m \e[0m\e[41m \e[0m\n\e[41m \e[0m\e[41m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[42m \e[0m\e[41m \e[0m\e[41m \e[0m\n"
+
+    @str_slim_A = "A\e[47mA\e[0m\e[47mA\e[0m\e[47mA\e[0mA\n\e[47mA\e[0mAAA\e[47mA\e[0m\n\e[47mA\e[0mAAA\e[47mA\e[0m\n\e[47mA\e[0m\e[47mA\e[0m\e[47mA\e[0m\e[47mA\e[0m\e[47mA\e[0m\n\e[47mA\e[0mAAA\e[47mA\e[0m\n\e[47mA\e[0mAAA\e[47mA\e[0m\n\e[47mA\e[0mAAA\e[47mA\e[0m\n"
   end
 
   after do
@@ -22,6 +24,11 @@ describe DigiString::CLI do
       it "prints a digital string with options" do
         DigiString::CLI.start(['new', 'A', '--fg', 'bg_red', '--bg', 'bg_green'])
         expect($stdout.string).to eq @str_colored_A
+      end
+
+      it "prints a slim A by A cells" do
+        DigiString::CLI.start(['new', 'A', '--cell', 'A', '--width', 1])
+        expect($stdout.string).to eq @str_slim_A
       end
     end
   end
