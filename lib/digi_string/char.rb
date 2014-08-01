@@ -572,8 +572,22 @@ module DigiString
 
     BRACKET_LEFT = %w()
     BRACKET_RIGHT = %w()
-    PERIOD = %w()
-    COMMA = %w()
+
+    PERIOD = %w(f f f f f
+                f f f f f
+                f f f f f
+                f f f f f
+                f t t f f
+                f t t f f)
+
+    COMMA = %w(f f f f f
+               f f f f f
+               f f f f f
+               f f f f f
+               f t t f f
+               f f t f f
+               f t f f f)
+
     COLON = %w(f f f f f
                f t t f f
                f t t f f
@@ -582,7 +596,22 @@ module DigiString
                f t t f f
                f f f f f)
 
-    SEMI_COLON = %w()
+    SEMI_COLON = %w(f f f f f
+                    f t t f f
+                    f t t f f
+                    f f f f f
+                    f t t f f
+                    f f t f f
+                    f t f f f)
+
+    APOSTROPHE = %w(f t t f f
+                    f f t f f
+                    f t f f f
+                    f f f f f
+                    f f f f f
+                    f f f f f
+                    f f f f f)
+
     DOLLAR = %w()
     EURO = %w()
     SLASH = %w()
@@ -593,9 +622,17 @@ module DigiString
     EQUAL = %w()
     PERCENT = %w()
 
+    FILL = %w(t t t t t
+              t t t t t
+              t t t t t
+              t t t t t
+              t t t t t
+              t t t t t
+              t t t t t)
+
     ALPHABETS = [*'A'..'Z', *'a'..'z'].zip([*'A'..'Z', *'LA'..'LZ']).to_h
 
-    MISC = '0123456789 !?_-().,:;$+-*/=%'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT)).to_h
+    MISC = '0123456789 !?_-().,:;$+-*/=%\''.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT APOSTROPHE)).to_h
 
     class NotImplementError < StandardError; end
 
