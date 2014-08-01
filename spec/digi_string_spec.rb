@@ -55,6 +55,7 @@ describe DigiString::String do
         str = subject << 'a'
         expect(str.string).to eq @str_map_Aa
         expect(str.to_s).to eq @str_Aa
+        expect(str.raw_string).to eq 'Aa'
       end
     end
 
@@ -63,6 +64,7 @@ describe DigiString::String do
         str = subject << DigiString::String.new('a')
         expect(str.string).to eq @str_map_Aa
         expect(str.to_s).to eq @str_Aa
+        expect(str.raw_string).to eq 'Aa'
       end
     end
   end

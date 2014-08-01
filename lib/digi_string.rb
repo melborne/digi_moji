@@ -6,7 +6,9 @@ require "colcolor"
 module DigiString
   class String
     attr_accessor :string
+    attr_reader :raw_string
     def initialize(str, space:1, **opts)
+      @raw_string = str.to_s
       @space = space
       @opts = opts
       @bg = opts[:bg]
@@ -37,6 +39,7 @@ module DigiString
 
     def <<(other, **opts)
       @string = (self + other).string
+      @raw_string += other.respond_to?(:raw_string) ? other.raw_string : other.to_s
       self
     end
 
