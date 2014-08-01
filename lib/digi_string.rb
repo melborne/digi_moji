@@ -5,7 +5,7 @@ require "colcolor"
 
 module DigiString
   class String
-    attr_reader :string
+    attr_accessor :string
     def initialize(str, space:1, **opts)
       @space = space
       @bg = opts[:bg]
@@ -29,11 +29,11 @@ module DigiString
         else
           raise "'other' should be a string, symbol or DigiString object."
         end
-      @string + other
+      self.dup.tap { |s| s.string += other }
     end
 
     def <<(other, **opts)
-      @string = self + other
+      @string = (self + other).string
       self
     end
 

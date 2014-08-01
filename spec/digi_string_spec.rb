@@ -36,14 +36,14 @@ describe DigiString::String do
     context "pass a string" do
       it "returns a concated digi_string" do
         str = subject + 'a'
-        expect(str).to eq @str_map_Aa
+        expect(str.string).to eq @str_map_Aa
       end
     end
 
     context "pass a DigiString object" do
       it "returns a concated digi_string" do
         str = subject + DigiString::String.new('a')
-        expect(str).to eq @str_map_Aa
+        expect(str.string).to eq @str_map_Aa
       end
     end
   end
