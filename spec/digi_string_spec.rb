@@ -26,7 +26,28 @@ describe DigiString::String do
 
     it "builds a character sequence for 'Aa" do
       str = DigiString::String.new("Aa")
-      expect(str.map).to eq @str_map
+      expect(str.string).to eq @str_map_Aa
+      expect(str.to_s).to eq @str_Aa
+    end
+  end
+
+  describe "#+" do
+    subject { DigiString::String.new("A") }
+    context "pass a string" do
+      it "returns a concated digi_string" do
+        str = subject + 'a'
+        expect(str).to eq @str_map_Aa
+      end
+    end
+
+    context "pass a DigiString object" do
+      it "returns a concated digi_string" do
+        str = subject + DigiString::String.new('a')
+        expect(str).to eq @str_map_Aa
+      end
+    end
+  end
+
     end
   end
 
