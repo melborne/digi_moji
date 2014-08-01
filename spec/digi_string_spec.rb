@@ -48,6 +48,22 @@ describe DigiString::String do
     end
   end
 
+  describe "#<<" do
+    subject { DigiString::String.new("A") }
+    context "pass a string" do
+      it "returns a concated digi_string" do
+        str = subject << 'a'
+        expect(str.string).to eq @str_map_Aa
+        expect(str.to_s).to eq @str_Aa
+      end
+    end
+
+    context "pass a DigiString object" do
+      it "returns a concated digi_string" do
+        str = subject << DigiString::String.new('a')
+        expect(str.string).to eq @str_map_Aa
+        expect(str.to_s).to eq @str_Aa
+      end
     end
   end
 

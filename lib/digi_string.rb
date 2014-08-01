@@ -32,6 +32,11 @@ module DigiString
       @string + other
     end
 
+    def <<(other, **opts)
+      @string = self + other
+      self
+    end
+
     private
     def str2chars(str, opts)
       str.to_s.each_char.map { |chr| Char[chr.intern, opts] }
