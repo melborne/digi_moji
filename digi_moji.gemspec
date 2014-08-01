@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'digi_string/version'
+require 'digi_moji/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "digi_string"
-  spec.version       = DigiString::VERSION
+  spec.name          = "digi_moji"
+  spec.version       = DigiMoji::VERSION
   spec.authors       = ["kyoendo"]
   spec.email         = ["postagie@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DigiString::Char do
+describe DigiMoji::Char do
   before do
     @MAP_A = [[false, true, true, true, false],
           [true, false, false, false, true],
@@ -59,34 +59,34 @@ describe DigiString::Char do
 
   describe ".build_char_map" do
     it "returns a boolean map for an alphabet" do
-      expect(DigiString::Char.build_char_map(:A)).to eq @MAP_A
+      expect(DigiMoji::Char.build_char_map(:A)).to eq @MAP_A
     end
 
     it "returns a boolean map for a number" do
-      expect(DigiString::Char.build_char_map(1)).to eq @MAP_ONE
+      expect(DigiMoji::Char.build_char_map(1)).to eq @MAP_ONE
     end
 
     it "returns a boolean map for a sign" do
-      expect(DigiString::Char.build_char_map('?')).to eq @MAP_QUESTION
+      expect(DigiMoji::Char.build_char_map('?')).to eq @MAP_QUESTION
     end
 
     it "raises an error for unknown charcters" do
-      expect{ DigiString::Char.build_char_map('#')}.to raise_error(DigiString::Char::NotImplementError)
+      expect{ DigiMoji::Char.build_char_map('#')}.to raise_error(DigiMoji::Char::NotImplementError)
     end
   end
 
   describe ".[]" do
     it "returns a digital character in white" do
-      expect(DigiString::Char[:A]).to eq @A
+      expect(DigiMoji::Char[:A]).to eq @A
     end
 
     context "with options" do
       it "returns green 'A' with yellow background" do
-        expect(DigiString::Char[:A, fg:'bg_green', bg:'bg_yellow']).to eq @A2
+        expect(DigiMoji::Char[:A, fg:'bg_green', bg:'bg_yellow']).to eq @A2
       end
 
       it "returns red 'A' constructed A cells" do
-        expect(DigiString::Char[:A, fg:'red', cell:'A']).to eq @A3
+        expect(DigiMoji::Char[:A, fg:'red', cell:'A']).to eq @A3
       end
     end
   end

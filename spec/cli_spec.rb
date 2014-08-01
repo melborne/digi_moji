@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DigiString::CLI do
+describe DigiMoji::CLI do
   before do
     $stdout = StringIO.new
     @str_A = "  \e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m  \n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m\n"
@@ -16,18 +16,18 @@ describe DigiString::CLI do
 
   describe "new" do
     it "prints a digital string" do
-      DigiString::CLI.start(['new', 'A'])
+      DigiMoji::CLI.start(['new', 'A'])
       expect($stdout.string).to eq @str_A
     end
 
     context "with options" do
       it "prints a digital string with options" do
-        DigiString::CLI.start(['new', 'A', '--fg', 'bg_red', '--bg', 'bg_green'])
+        DigiMoji::CLI.start(['new', 'A', '--fg', 'bg_red', '--bg', 'bg_green'])
         expect($stdout.string).to eq @str_colored_A
       end
 
       it "prints a slim A by A cells" do
-        DigiString::CLI.start(['new', 'A', '--cell', 'A', '--width', 1])
+        DigiMoji::CLI.start(['new', 'A', '--cell', 'A', '--width', 1])
         expect($stdout.string).to eq @str_slim_A
       end
     end

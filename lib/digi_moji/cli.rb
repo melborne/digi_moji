@@ -1,6 +1,6 @@
 require "thor"
 
-module DigiString
+module DigiMoji
   class CLI < Thor
     class_option :fg, aliases:'-f', desc:'Foreground color', default:'bg_white'
     class_option :bg, aliases:'-b', desc:'Background color'

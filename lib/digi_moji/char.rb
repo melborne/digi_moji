@@ -1,4 +1,4 @@
-module DigiString
+module DigiMoji
   class Char
     CHAR_WIDTH  = 5
     CHAR_HEIGHT = 7

@@ -1,10 +1,10 @@
-require "digi_string/version"
-require "digi_string/char"
-require "digi_string/cli"
+require "digi_moji/version"
+require "digi_moji/char"
+require "digi_moji/cli"
 
 require "colcolor"
 
-module DigiString
+module DigiMoji
   class String
     attr_accessor :string
     attr_reader :raw_string
@@ -29,7 +29,7 @@ module DigiString
         case other
         when ::String, ::Symbol
           str2chars(other, opts)
-        when DigiString::String
+        when DigiMoji::String
           other.string
         else
           raise "'other' should be a string, symbol or DigiString object."
