@@ -55,6 +55,8 @@ describe DigiMoji::Char do
       "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m",
       "\e[31mA\e[0m\e[31mA\e[0mAAAAAA\e[31mA\e[0m\e[31mA\e[0m"
       ]
+
+    @ohm = ["          ", "  \e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m  ", "\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m", "\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m", "\e[47m \e[0m\e[47m \e[0m      \e[47m \e[0m\e[47m \e[0m", "  \e[47m \e[0m\e[47m \e[0m  \e[47m \e[0m\e[47m \e[0m  ", "\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m  \e[47m \e[0m\e[47m \e[0m\e[47m \e[0m\e[47m \e[0m"]
   end
 
   describe ".build_char_map" do
@@ -71,7 +73,7 @@ describe DigiMoji::Char do
     end
 
     it "raises an error for unknown charcters" do
-      expect{ DigiMoji::Char.build_char_map('#')}.to raise_error(DigiMoji::Char::NotImplementError)
+      expect{ DigiMoji::Char.build_char_map('⌘')}.to raise_error(DigiMoji::Char::NotImplementError)
     end
   end
 
@@ -88,6 +90,34 @@ describe DigiMoji::Char do
       it "returns red 'A' constructed A cells" do
         expect(DigiMoji::Char[:A, fg:'red', cell:'A']).to eq @A3
       end
+    end
+  end
+
+  describe ".register" do
+    it "registers new character" do
+      DigiMoji::Char.register("Ω", %w(f f f f f
+                                      f t t t f
+                                      t f f f t
+                                      t f f f t
+                                      t f f f t
+                                      f t f t f
+                                      t t f t t))
+      expect{ DigiMoji::Char["Ω"] }.not_to raise_error
+      expect(DigiMoji::Char["Ω"]).to eq @ohm
+    end
+
+    it "raises InvalidCharForm error" do
+      map = %w(f f f f f
+               f t t t f
+               t f f f t
+               t f f f t
+               t f f f t
+               f t f t f)
+      expect{ DigiMoji::Char.register("ß", map) }.to raise_error(DigiMoji::Char::InvalidCharForm)
+    end
+
+    it "raises InUseCharError" do
+      expect{ DigiMoji::Char.register("å", %(t t t t t)) }.to raise_error(DigiMoji::Char::InUseCharError)
     end
   end
 end

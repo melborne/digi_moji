@@ -751,10 +751,14 @@ module DigiMoji
     MISC = '0123456789 !?_-().,:;$+-*/=%\'#&><@'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT APOSTROPHE SHAPE AND GREATER LESS AT)).to_h
 
     class NotImplementError < StandardError; end
+    class InvalidCharForm < StandardError; end
+    class InUseCharError < StandardError; end
 
     def self.build_char_map(char)
-      char = ALPHABETS[char.to_s] || MISC[char.to_s] || raise(NotImplementError)
-      char_map = const_get(char)
+      unless char_map = @special_chars[char.to_s]
+        char = ALPHABETS[char.to_s] || MISC[char.to_s] || raise(NotImplementError)
+        char_map = const_get(char)
+      end
       char_map.map { |cell| cell == 't' }
               .each_slice(char_map.size/7).to_a
     end
@@ -765,6 +769,24 @@ module DigiMoji
         pattern = row.map { |col| [col ? fg : bg] * width }.flatten
         cells.colco(*pattern, regexp:/./)
       end
+    end
+
+    @special_chars = { 'å' => BLOCK }
+
+    def self.register(char, map)
+      validate_char_form(char, map)
+      @special_chars[char] = map
+    end
+
+    def self.validate_char_form(char, map)
+      if @special_chars[char.to_s]
+        raise InUseCharError, "'#{char}' is in use"
+      end
+      if map.size != (CHAR_WIDTH * CHAR_HEIGHT) ||
+                        !map.all? { |c| %w(t f).include? c }
+        raise InvalidCharForm, "Passed map has invalid form"
+      end
+      true
     end
   end
 end
