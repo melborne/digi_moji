@@ -68,5 +68,15 @@ describe DigiMoji::String do
       end
     end
   end
+
+  describe String do
+    describe "#to_digimoji" do
+      it "returns a DigiMoji::String object" do
+        str = "Aa".to_digimoji
+        expect(str).to be_an_instance_of(DigiMoji::String)
+        expect(str.to_s).to eq @str_Aa
+      end
+    end
+  end
 end
 

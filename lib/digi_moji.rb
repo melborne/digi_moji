@@ -50,3 +50,9 @@ module DigiMoji
     end
   end
 end
+
+class String
+  def to_digimoji(**opts)
+    DigiMoji::String.new(self, **opts)
+  end
+end
