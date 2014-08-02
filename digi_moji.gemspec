@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = DigiMoji::VERSION
   spec.authors       = ["kyoendo"]
   spec.email         = ["postagie@gmail.com"]
-  spec.summary       = %q{Building a digital color string for terminal.}
+  spec.summary       = %q{5x7 digital color words on your terminal.}
   spec.homepage      = "https://github.com/melborne/digi_moji"
   spec.license       = "MIT"
 

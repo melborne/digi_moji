@@ -1,6 +1,6 @@
 # DigiMoji
 
-Building a digital color string for terminal.
+5x7 digital color words on your terminal.
 
 ## Installation
 
@@ -16,9 +16,59 @@ Or install it yourself as:
 
     $ gem install digi_moji
 
-## Usage
+## Usage in your terminal
 
-TODO: Write usage instructions here
+### new command
+
+Try `digi_moji new` command with words:
+
+    % digi_moji new RUBY
+
+Output:
+
+![sample1](https://github.com/melborne/colcolor/raw/screenshot/sample1.png)
+
+    % digi_moji new RUBY --fg=bg_red --bg=bg_yellow
+
+Output:
+
+![sample2](https://github.com/melborne/colcolor/raw/screenshot/sample2.png)
+
+    % digi_moji new RUBY --fg=red_cyan --bg=red_cyan_blink --cell='R'
+
+Output:
+
+![sample3](https://github.com/melborne/colcolor/raw/screenshot/sample3.gif)
+
+### time command
+
+`digi_moji time` outputs current time:
+
+![sample4](https://github.com/melborne/colcolor/raw/screenshot/sample4.gif)
+
+### timer command
+
+`digi_moji timer` outputs count down timer:
+
+![sample5](https://github.com/melborne/colcolor/raw/screenshot/sample5.gif)
+
+## Usage as ruby script
+
+```ruby
+require 'digi_moji'
+
+str = DigiMoji::String.new("HE", fg:'bg_green', bg:'bg_yellow')
+
+puts str
+puts
+puts str + "LLO!"
+puts
+puts str.join("LP!", fg:'bg_red')
+```
+
+Output:
+
+![sample6](https://github.com/melborne/colcolor/raw/screenshot/sample6.png)
 
 ## Contributing
 
