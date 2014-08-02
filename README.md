@@ -26,31 +26,31 @@ Try `digi_moji new` command with words:
 
 Output:
 
-![sample1](https://github.com/melborne/colcolor/raw/screenshot/sample1.png)
+![sample1](https://github.com/melborne/digi_moji/raw/screenshot/sample1.png)
 
     % digi_moji new RUBY --fg=bg_red --bg=bg_yellow
 
 Output:
 
-![sample2](https://github.com/melborne/colcolor/raw/screenshot/sample2.png)
+![sample2](https://github.com/melborne/digi_moji/raw/screenshot/sample2.png)
 
     % digi_moji new RUBY --fg=red_cyan --bg=red_cyan_blink --cell='R'
 
 Output:
 
-![sample3](https://github.com/melborne/colcolor/raw/screenshot/sample3.gif)
+![sample3](https://github.com/melborne/digi_moji/raw/screenshot/sample3.gif)
 
 ### time command
 
 `digi_moji time` outputs current time:
 
-![sample4](https://github.com/melborne/colcolor/raw/screenshot/sample4.gif)
+![sample4](https://github.com/melborne/digi_moji/raw/screenshot/sample4.gif)
 
 ### timer command
 
 `digi_moji timer` outputs count down timer:
 
-![sample5](https://github.com/melborne/colcolor/raw/screenshot/sample5.gif)
+![sample5](https://github.com/melborne/digi_moji/raw/screenshot/sample5.gif)
 
 ## Usage as ruby script
 
@@ -68,7 +68,7 @@ puts str.join("LP!", fg:'bg_red')
 
 Output:
 
-![sample6](https://github.com/melborne/colcolor/raw/screenshot/sample6.png)
+![sample6](https://github.com/melborne/digi_moji/raw/screenshot/sample6.png)
 
 ## Contributing
 
