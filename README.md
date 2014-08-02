@@ -24,19 +24,13 @@ Try `digi_moji new` command with words:
 
     % digi_moji new RUBY
 
-Output:
-
 ![sample1](https://github.com/melborne/digi_moji/raw/screenshot/sample1.png)
 
     % digi_moji new RUBY --fg=bg_red --bg=bg_yellow
 
-Output:
-
 ![sample2](https://github.com/melborne/digi_moji/raw/screenshot/sample2.png)
 
-    % digi_moji new RUBY --fg=red_cyan --bg=red_cyan_blink --cell='R'
-
-Output:
+    % digi_moji new RUBY --fg=red --bg=red_blink --cell='R'
 
 ![sample3](https://github.com/melborne/digi_moji/raw/screenshot/sample3.gif)
 
@@ -51,6 +45,8 @@ Output:
 `digi_moji timer` outputs count down timer:
 
 ![sample5](https://github.com/melborne/digi_moji/raw/screenshot/sample5.gif)
+
+`digi_moji help` for more info.
 
 ## Usage as ruby script
 
