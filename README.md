@@ -1,5 +1,7 @@
 # DigiMoji
 
+[![Build Status](https://travis-ci.org/melborne/digi_moji.svg)](https://travis-ci.org/melborne/digi_moji)
+
 5x7 digital color words on your terminal.
 
 ## Installation
