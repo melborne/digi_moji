@@ -117,7 +117,7 @@ describe DigiMoji::Char do
     end
 
     it "raises InUseCharError" do
-      expect{ DigiMoji::Char.register("å", %(t t t t t)) }.to raise_error(DigiMoji::Char::InUseCharError)
+      expect{ DigiMoji::Char.register("æ", %(t t t t t)) }.to raise_error(DigiMoji::Char::InUseCharError)
     end
   end
 end

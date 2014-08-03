@@ -396,11 +396,11 @@ module DigiMoji
          f f f f f)
     LX =
       %w(f f f f f
-         t f f t f
-         t f f t f
-         f t t f f
-         t f f t f
-         t f f t f
+         t f f f t
+         f t f t f
+         f f t f f
+         f t f t f
+         t f f f t
          f f f f f)
     LY =
       %w(f f f f f
@@ -522,38 +522,6 @@ module DigiMoji
          f f t f f
          f f f f f
          f f t f f)
-    ARROW_RIGHT =
-      %w(f f f f f
-         f f t f f
-         f f f t f
-         t t t t t
-         f f f t f
-         f f t f f
-         f f f f f)
-     ARROW_LEFT =
-      %w(f f f f f
-         f f t f f
-         f t f f f
-         t t t t t
-         f t f f f
-         f f t f f
-         f f f f f)
-    ARROW_UP =
-      %w(f f t f f
-         f t t t f
-         t f t f t
-         f f t f f
-         f f t f f
-         f f t f f
-         f f t f f)
-    ARROW_DOWN =
-      %w(f f t f f
-         f f t f f
-         f f t f f
-         f f t f f
-         t f t f t
-         f t t t f
-         f f t f f)
     UNDERSCORE =
       %w(f f f f f
          f f f f f
@@ -570,7 +538,7 @@ module DigiMoji
          f f f f f
          f f f f f
          f f f f f)
-    BRACKET_LEFT =
+    OPEN_PARENTHESIS =
       %w(f f f t f
          f f t f f
          f f t f f
@@ -578,7 +546,7 @@ module DigiMoji
          f f t f f
          f f t f f
          f f f t f)
-    BRACKET_RIGHT =
+    CLOSE_PARENTHESIS =
       %w(f t f f f
          f f t f f
          f f t f f
@@ -586,8 +554,41 @@ module DigiMoji
          f f t f f
          f f t f f
          f t f f f)
+    OPEN_BRACKET =
+      %w(f f t t f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t t f)
+    CLOSE_BRACKET =
+      %w(f t t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f t t f f)
+    OPEN_BRACE =
+      %w(f f f t f
+         f f t f f
+         f f t f f
+         f t f f f
+         f f t f f
+         f f t f f
+         f f f t f)
+    CLOSE_BRACE =
+      %w(f t f f f
+         f f t f f
+         f f t f f
+         f f f t f
+         f f t f f
+         f f t f f
+         f t f f f)
     PERIOD =
       %w(f f f f f
+         f f f f f
          f f f f f
          f f f f f
          f f f f f
@@ -625,6 +626,22 @@ module DigiMoji
          f f f f f
          f f f f f
          f f f f f)
+    QUOTE =
+      %w(f t t f t
+         f f t f t
+         f t f t f
+         f f f f f
+         f f f f f
+         f f f f f
+         f f f f f)
+    BACKQUOTE =
+      %w(f t t f f
+         f t f f f
+         f f t f f
+         f f f f f
+         f f f f f
+         f f f f f
+         f f f f f)
     DOLLAR =
       %w(f t t t f
          t f t f t
@@ -649,6 +666,22 @@ module DigiMoji
          f t f f f
          t f f f f
          f f f f f)
+    BACK_SLASH =
+      %w(f f f f f
+         t f f f f
+         f t f f f
+         f f t f f
+         f f f t f
+         f f f f t
+         f f f f f)
+    PIPE =
+      %w(f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f)
     PLUS =
       %w(f f f f f
          f f t f f
@@ -665,21 +698,13 @@ module DigiMoji
          f f f f f
          f f f f f
          f f f f f)
-    TIMES =
+    ASTERISK =
       %w(f f f f f
-         t f f f t
-         f t f t f
+         t f t f t
+         f t t t f
          f f t f f
-         f t f t f
-         t f f f t
-         f f f f f)
-    DIVIDE =
-      %w(f f f f f
-         f f t f f
-         f f f f f
-         t t t t t
-         f f f f f
-         f f t f f
+         f t t t f
+         t f t f t
          f f f f f)
     EQUAL =
       %w(f f f f f
@@ -737,6 +762,25 @@ module DigiMoji
          t f t t t
          t f f f f
          f t t t t)
+    TILDE =
+      %w(f f f f f
+         f f f f f
+         f t t f t
+         t f f t f
+         f f f f f
+         f f f f f
+         f f f f f)
+    CARET =
+      %w(f f t f f
+         f t f t f
+         t f f f t
+         f f f f f
+         f f f f f
+         f f f f f
+         f f f f f)
+
+    # Special characters
+
     BLOCK =
       %w(t t t t t
          t t t t t
@@ -745,10 +789,50 @@ module DigiMoji
          t t t t t
          t t t t t
          t t t t t)
+    DIVIDE =
+      %w(f f f f f
+         f f t f f
+         f f f f f
+         t t t t t
+         f f f f f
+         f f t f f
+         f f f f f)
+    ARROW_RIGHT =
+      %w(f f f f f
+         f f t f f
+         f f f t f
+         t t t t t
+         f f f t f
+         f f t f f
+         f f f f f)
+     ARROW_LEFT =
+      %w(f f f f f
+         f f t f f
+         f t f f f
+         t t t t t
+         f t f f f
+         f f t f f
+         f f f f f)
+    ARROW_UP =
+      %w(f f t f f
+         f t t t f
+         t f t f t
+         f f t f f
+         f f t f f
+         f f t f f
+         f f t f f)
+    ARROW_DOWN =
+      %w(f f t f f
+         f f t f f
+         f f t f f
+         f f t f f
+         t f t f t
+         f t t t f
+         f f t f f)
 
     ALPHABETS = [*'A'..'Z', *'a'..'z'].zip([*'A'..'Z', *'LA'..'LZ']).to_h
 
-    MISC = '0123456789 !?_-().,:;$+-*/=%\'#&><@'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH BRACKET_LEFT BRACKET_RIGHT PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS TIMES DIVIDE EQUAL PERCENT APOSTROPHE SHAPE AND GREATER LESS AT)).to_h
+    MISC = '0123456789 !?_-()[]{}.,:;$+-*/\\|=%\'"#&><@~`^'.split(//).zip(%i(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE SPACE EXCLAMATION QUESTION UNDERSCORE DASH OPEN_PARENTHESIS CLOSE_PARENTHESIS OPEN_BRACKET CLOSE_BRACKET OPEN_BRACE CLOSE_BRACE PERIOD COMMA COLON SEMI_COLON DOLLAR PLUS MINUS ASTERISK SLASH BACK_SLASH PIPE EQUAL PERCENT APOSTROPHE QUOTE SHAPE AND GREATER LESS AT TILDE BACKQUOTE CARET)).to_h
 
     class NotImplementError < StandardError; end
     class InvalidCharForm < StandardError; end
@@ -771,7 +855,17 @@ module DigiMoji
       end
     end
 
-    @special_chars = { 'å' => BLOCK }
+    # alt + ' => BLOCK
+    # alt + / => DIVIDE
+    # alt + ≤, ≥, ¬, — => ARROW_LEFT, _RIGHT, _UP, _DOWN
+    @special_chars = {
+        'æ' => BLOCK,
+        '÷' => DIVIDE,
+        '≤' => ARROW_LEFT,
+        '≥' => ARROW_RIGHT,
+        '¬' => ARROW_UP,
+        '—' => ARROW_DOWN,
+        }
 
     def self.register(char, map)
       validate_char_form(char, map)
