@@ -20,6 +20,13 @@ describe DigiMoji::CLI do
       expect($stdout.string).to eq @str_A
     end
 
+    context "with undefined chars" do
+      it "exits by error message" do
+        DigiMoji::CLI.start(['new', 'œ'])
+        expect($stdout.string).to match(/'œ' includes undefined/)
+      end
+    end
+
     context "with options" do
       it "prints a digital string with options" do
         DigiMoji::CLI.start(['new', 'A', '--fg', 'bg_red', '--bg', 'bg_green'])

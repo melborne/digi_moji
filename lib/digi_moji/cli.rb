@@ -12,6 +12,8 @@ module DigiMoji
       opts = down_symbolize_key(options)
       str = String.new(word, opts)
       puts str
+    rescue => e
+      puts "'#{word}' includes undefined character(s)."
     end
 
     desc "time", "Print current time"
