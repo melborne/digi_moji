@@ -844,7 +844,7 @@ module DigiMoji
         char_map = const_get(char)
       end
       char_map.map { |cell| cell == 't' }
-              .each_slice(char_map.size/7).to_a
+              .each_slice(char_map.size / CHAR_HEIGHT).to_a
     end
 
     def self.[](char, fg: :bg_white, bg: nil, cell:" ", width:2)
